@@ -86,10 +86,16 @@ cd CRISPRT4/Demultiplexing
 3. Move demultiplexed files to the input folder CRISPRT4/input/fastq directory
 
 4. Execute the script for mapping and variant calling of demultiplexed sequencing data
-4.1 Define the name of your reference genome (in fasta format)
+4.1 Define the name of your reference genome (in fasta format) and give the absolute path for it
 ```
-REFERENCE="NC_000866-4.fasta"
+in your input reference folder execute the pwd command
 ```
+example: /Users/maikschauerte/Data-Analysis/CRISPRT4/input/reference
+Thus, your REFERENCE variable will be:
+```
+REFERENCE="/Users/maikschauerte/Data-Analysis/CRISPRT4/input/reference/NC_000866-4.fasta"
+```
+4.2
 
 
 
