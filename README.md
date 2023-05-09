@@ -61,13 +61,13 @@ conda install -c bioconda bcftools
 conda install -c bioconda subread
 ```
 
-10. Alternative for osx-arm64 systems
+10. Alternative for osx-arm64 systems for which certain packages are lacking
 ```
-conda create -n CRISPRT4
-conda activate CRISPRT4
+conda create -n CRISPRT4_2
+conda activate CRISPRT4_2
 conda config --env --set subdir osx-64
-then, install all Intel based tools as described above
-´´´
+then, install all Intel based tools as described above (longshot, bcftools and subread from 7. - 9.)
+```
 
 
 ## Perform analysis of your data
@@ -133,8 +133,8 @@ TargetRegion="NC_000866.4:11000-14000"
 ```
 
 4.4 Execute the Script for mapping and variant calling.
-Deposit the Script "Mapping_and_Variant-calling.sh" in the CRISPRT4 directory.
-Located in that directory, execute the script:
+Deposit the Script "Mapping_Variant-calling_Counting.sh" in the CRISPRT4 directory. For M1 Chip-based systems execute the script: Mapping_Variant-calling_Counting_M1.sh.
+Located in that directory, execute the script such as in this example:
 ```
 bash Mapping_and_Variant-calling.sh
 ```
@@ -212,7 +212,7 @@ You can see that S124 likely is a modA mutant.
 ***
 
 ## Authors and acknowledgment
-To be added.
+M.W. performed data analysis, documentation and created this repository.
 
 ## Project status
 This project is currently under development.
