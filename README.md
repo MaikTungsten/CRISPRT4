@@ -51,6 +51,24 @@ conda install -c merv samtools
 conda install -c bioconda longshot
 ```
 
+8. Install bcftools for osx or linux
+```
+conda install -c bioconda bcftools
+```
+
+9. Install subread for osx or linux
+```
+conda install -c bioconda subread
+```
+
+10. Alternative for osx-arm64 systems
+```
+conda create -n CRISPRT4
+conda activate CRISPRT4
+conda config --env --set subdir osx-64
+then, install all Intel based tools as described above
+´´´
+
 
 ## Perform analysis of your data
 
