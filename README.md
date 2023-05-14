@@ -4,11 +4,11 @@
 
 ## What CRISPRT4 is made for
 
-CRISPRT4 is a workflow to screen hundreds of potential T4 phage point mutants obtained from the CRISPR-Cas12 approach as described in Pozhydaieva et al., 2023 (LINK). It is designed only for screening of phage mutants via sequencing of distinct amplified genomic regions of interest with the Oxford Nanopore platform. This workflow includes demultiplexing with minibar, mapping to the reference genome with minimap2 and variant calling using longshot.
+CRISPRT4 is a workflow to screen hundreds of potential T4 phage point mutants obtained from the CRISPR-Cas12 approach as described in Pozhydaieva et al., 2023 (**LINK**). It is designed only for screening of phage mutants via sequencing of distinct amplified genomic regions of interest with the Oxford Nanopore platform. This workflow includes demultiplexing with minibar, mapping to the reference genome with minimap2 and variant calling using longshot.
 
 ## Installation of requirements
 
-For the data analysis, several tools which are most easily installed via miniconda. Therefore, it is recommended that you follow the suggested installation procedure described in the following:
+For the data analysis, several tools are needed which are most easily installed via miniconda. Therefore, it is recommended that you follow the suggested installation procedure described in the following but different setups are certainly possible:
 
 1. Install miniconda via the command line following instructions presented on: https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html. Please consider that depending on your system the below described installations may need to be adjusted (e.g. Osx64 vs Osx-arm64 depending on the processor of your Mac).
 
@@ -22,7 +22,7 @@ conda create -n CRISPRT4 python=3.9
 pip install edlib
 ```
 
-4. Download minibar (https://github.com/calacademy-research/minibar) and allow execution
+4. Download minibar (https://github.com/calacademy-research/minibar) and allow its execution
 ```
 wget https://raw.githubusercontent.com/calacademy-research/minibar/master/minibar.py
 chmod 775 minibar.py
@@ -100,31 +100,36 @@ Move this file (Example: All_reads_ONTrun_079.fastq) to CRISPRT4/Demultiplexing 
 cd CRISPRT4/Demultiplexing
 ./minibar.py -T -F IndexCombination_ONTrun_079.txt All_reads_ONTrun_079.fastq
 ```
-
 3. Move demultiplexed files to the input folder CRISPRT4/input/fastq directory
 
-4. Execute the script for mapping and variant calling of demultiplexed sequencing data
-4.1 Define the name of your reference genome (in fasta format) and give the absolute path for it
+4. Deposit the required reference genome including an annotation, a fasta file and the index fai file in the CRISPRT4/input/reference directory
+
+5. Execute the script for mapping and variant calling of demultiplexed sequencing data:
+EITHER Mapping_and_Variant-calling_Intel.sh (for basically all systems, requires prior activation of CRISPRT4 environment) OR Mapping_M1.sh (for M1 chip systems, requires CRISPRT4 environment for M1) and Variant-calling_M1.sh (for M1 chip systems, requires CRISPRT4_2 environment for M1)
+
+5.1 Define the name of your reference genome (in fasta format) and assign the absolute path for it
 in your input reference folder execute the pwd command
 ```
 pwd
 ```
 example: /Users/maikschauerte/Data-Analysis/CRISPRT4/input/reference
-Thus, your REFERENCE variable will be:
+Thus, your REFERENCE and GFF3 variables will be:
 ```
 REFERENCE="/Users/maikschauerte/Data-Analysis/CRISPRT4/input/reference/NC_000866-4.fasta"
+GFF3="/Users/maikschauerte/Data-Analysis/CRISPRT4/input/reference/NC_000866-4.gff3"
 ```
-4.2 Define the target region for variant calling (ideally the coordinates of the locus at which you performed mutagenesis)
+5.2 Define the target region for variant calling (ideally the coordinates of the locus at which you performed mutagenesis)
 Example for modA and modB genes: 
 ```
 TargetRegion="NC_000866.4:11000-14000"
 ```
 As you can see, it is important that the TargetRegion is exactly comprised of the exact ID of the reference genome provided in fasta format and that you give start and end position of the locus separated by ":".
 
-4.3 These two changes have to be made in the script by the user. 
+5.3 These two changes have to be made in the script by the user. 
 ```
-# Adjust this single line of code to specify the absolute path to the reference genome for mapping and variant calling
-REFERENCE="/Users/maikschauerte/Data-Analysis/CRISPRT4/input/reference/NC_000866-4.fasta"
+# Adjust these lines of code to specify the absolute path to the reference genome for mapping and variant calling
+REFERENCE="/Users/maikschauerte/Data-Analysis/NP_final/ONTrun_079/CRISPRT4/input/reference/NC_000866-4.fasta"
+GFF3="/Users/maikschauerte/Data-Analysis/NP_final/ONTrun_079/CRISPRT4/input/reference/NC_000866-4.gff3"
 
 ...
 
@@ -132,79 +137,35 @@ REFERENCE="/Users/maikschauerte/Data-Analysis/CRISPRT4/input/reference/NC_000866
 TargetRegion="NC_000866.4:11000-14000"
 ```
 
-4.4 Execute the Script for mapping and variant calling.
-Deposit the Script "Mapping_Variant-calling_Counting.sh" in the CRISPRT4 directory. For M1 Chip-based systems execute the script: Mapping_Variant-calling_Counting_M1.sh.
+5.4 Execute the Script for mapping and variant calling.
+Deposit the Script "Mapping_Variant-calling_Counting.sh" in the ./CRISPRT4 directory. For M1 Chip-based systems execute the script: Mapping_M1.sh and thereafter Variant-calling_M1.sh.
 Located in that directory, execute the script such as in this example:
 ```
 bash Mapping_and_Variant-calling.sh
 ```
 
-4.5 Thereby, you will obtain sam, bam and indexed bam files from the alignments (in CRISPRT4/output/alignment) as well as vcf files (in CRISPRT4/output/vcfFiles) indicating variants at the chosen locus. These files can be viewed with IGV or similar software.
+5.5 Thereby, you will obtain sam, bam and indexed bam files from the alignments (in CRISPRT4/output/alignment) as well as vcf files (in CRISPRT4/output/vcfFiles) indicating variants at the chosen locus and read count data (in CRISPRT4/output/countData). Vcf and bam files can be viewed with IGV or similar software. Counts table can be analysed in R or Python.
 
-5. Optional text based search for mutations
-The Script "Screening_for_mutants_by_text-search.sh" is a quick and easy solution to screen for potential mutants without alignment. This script does only require demultiplexing prior to execution. This is how the code looks like at the example of screening for modA and modB mutants.
-Here, chunks of the WT and the MUT sequence of the genes (including the mutated site of course) are given as input for text search via grep through the demultiplexed fastq files. In addition, a random gene sequence outside the mutation site is given. You should be aware that this will only identify a fraction of reads which actually correspond to the target gene, as Nanopore reads are quite noisy and mismatches are not tolerated in that search. However, mutants actually display low counts for WT sequence and vice versa and mutants are also identified as such by mapping and variant calling. Thus, this script provides a quick indication of potential mutants.
+6. To obtain information from the vcf files in an easy to screen format, you can run the Screening_for_mutants_by_vcf_files.sh Script.
+This is a quick and easy solution to screen for potential mutants by extracting variant call information from each vcf files. Based on indicated sites with variants, you can then decide on which mutants to investigate further in IGV based on the alignments. Theoretically, you should not observe variants at sites other than the one mutated and for negative clones you should not observe any variants called by longshot. Thus, these samples appear without any information except for the sample name in the txt file.
 
-Here, you can see the script. For your genes of interest, edit the sequence names in the lines starting with "echo" and the corresponding sequence below.
-
+Locate the script in the CRISPRT4 directory and execute:
 ```
-cd CRISPRT4/input/fastq
-for FILE in *.fastq
-do
-echo $FILE
-wc -l $FILE
-echo "ModB random"
-grep -c 'ATCAGTTTTTAAACGAAGTA' $FILE
-echo "ModB WT"
-grep -c 'TATACCACGATATAATTGAT' $FILE
-echo "ModB MUT"
-grep -c 'TATACCGCGATATAATTGAT' $FILE
-echo "ModA random"
-grep -c 'ATAACTTGTGTGTTATACTC' $FILE
-echo "ModA WT"
-grep -c 'GATGAACAAGAAGTAATGAT' $FILE
-echo "ModA MUT"
-grep -c 'GATGAACAAGCGGTAATGAT' $FILE
-echo "------------------------------------"
-done
-```
-
-Then, locate the script in the CRISPRT4 directory and execute:
-```
-bash Screening_for_mutants_by_text-search.sh > Text_search_28-11-2022.txt
+bash Screening_for_mutants_by_vcf-files.sh > Vcf_summary.txt
 ```
 
 You will yield a file which may look like this:
 ```
-sample_S124.fastq
-616 sample_S124.fastq
-ModB random
-31
-ModB WT
-51
-ModB MUT
-0
-ModA random
-44
-ModA WT
-0
-ModA MUT
-54
+sample_S122_variants.vcf
 ------------------------------------
-sample_S125.fastq
-1924 sample_S125.fastq
-ModB random
-82
-ModB WT
-145
-ModB MUT
-1
-ModA random
-124
-ModA WT
-110
-ModA MUT
-0
+sample_S123_variants.vcf
+------------------------------------
+sample_S124_variants.vcf
+NC_000866.4	12016	.	T	C	500.00	PASS	DP=150;AC=10,130;AM=10;MC=0;MF=0.000;MB=0.000;AQ=14.67;GM=1;DA=150;MQ10=1.00;MQ20=1.00;MQ30=1.00;MQ40=1.00;MQ50=1.00;PH=500.00,244.98,244.98,0.00;SC=GTATCATTACTTCTTGTTCAT;	GT:GQ:PS:UG:UQ	1/1:241.97:.:1/1:500.00
+NC_000866.4	12017	.	T	G	500.00	PASS	DP=150;AC=1,136;AM=13;MC=0;MF=0.000;MB=0.000;AQ=13.34;GM=1;DA=150;MQ10=1.00;MQ20=1.00;MQ30=1.00;MQ40=1.00;MQ50=1.00;PH=500.00,397.71,397.71,0.00;SC=TATCATTACTTCTTGTTCATC;	GT:GQ:PS:UG:UQ	1/1:394.70:.:1/1:500.00
+------------------------------------
+sample_S125_variants.vcf
+------------------------------------
 ```
 You can see that S124 likely is a modA mutant.
 
@@ -212,7 +173,7 @@ You can see that S124 likely is a modA mutant.
 ***
 
 ## Authors and acknowledgment
-M.W. performed data analysis, documentation and created this repository.
+To be added by N.P. M.W. performed data analysis, documentation and created this repository.
 
 ## Project status
 This project is currently under development.
