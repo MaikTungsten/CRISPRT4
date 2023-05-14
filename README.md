@@ -167,7 +167,7 @@ NC_000866.4	12017	.	T	G	500.00	PASS	DP=150;AC=1,136;AM=13;MC=0;MF=0.000;MB=0.000
 sample_S125_variants.vcf
 ------------------------------------
 ```
-You can see that S124 likely is a modA mutant.
+The first column represents the reference genome ID, followed by the variant position, in the fourth column the expected base is shown and the alternative variant base in the subsequent column. You can see that S124 likely is a modA mutant which should be further investigated by looking at the alignments and verified by Sanger sequencing.
 
 
 ***
