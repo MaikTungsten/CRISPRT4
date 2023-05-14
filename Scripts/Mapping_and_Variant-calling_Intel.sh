@@ -1,4 +1,4 @@
-# Adjust this single line of code to specify the absolute path to the reference genome for mapping and variant calling
+# Adjust these lines of code to specify the absolute path to the reference genome for mapping and variant calling
 REFERENCE="/Users/maikschauerte/Data-Analysis/NP_final/ONTrun_079/CRISPRT4/input/reference/NC_000866-4.fasta"
 GFF3="/Users/maikschauerte/Data-Analysis/NP_final/ONTrun_079/CRISPRT4/input/reference/NC_000866-4.gff3"
 
@@ -20,7 +20,7 @@ cd ..
 mv *.bam *.sam *.bai output/alignment
 
 # Specify the target region for variant calling. This is a string combining the reference genome id and the region indicated by numbers, for instance the following region for alt gene
-TargetRegion="NC_000866.4:123454-125502"
+TargetRegion="NC_000866.4:11000-14000"
 
 cd output/alignment
 for FILE in *sorted.bam
