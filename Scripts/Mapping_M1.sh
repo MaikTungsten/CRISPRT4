@@ -1,6 +1,6 @@
 # Adjust these lines of code to specify the absolute path to the reference genome for mapping and variant calling
-REFERENCE="/Users/maikschauerte/Data-Analysis/NP_final/ONTrun_079/CRISPRT4/input/reference/NC_000866-4.fasta"
-GFF3="/Users/maikschauerte/Data-Analysis/NP_final/ONTrun_079/CRISPRT4/input/reference/NC_000866-4.gff3"
+REFERENCE="/Users/.../ONTrun_079/CRISPRT4/input/reference/NC_000866-4.fasta"
+GFF3="/Users/.../ONTrun_079/CRISPRT4/input/reference/NC_000866-4.gff3"
 
 
 cd input/fastq
