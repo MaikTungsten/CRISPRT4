@@ -144,9 +144,9 @@ Located in that directory, execute the script such as in this example:
 bash Mapping_and_Variant-calling.sh
 ```
 
-5.5 Thereby, you will obtain sam, bam and indexed bam files from the alignments (in CRISPRT4/output/alignment) as well as vcf files (in CRISPRT4/output/vcfFiles) indicating variants at the chosen locus and read count data (in CRISPRT4/output/countData). Vcf and bam files can be viewed with IGV or similar software. Counts table can be analysed in R or Python.
+5.5 Thereby, you will obtain sam, bam and indexed bam files from the alignments (in CRISPRT4/output/alignment) for inspection in genome browsers, vcf files (in CRISPRT4/output/vcfFiles) indicating variants at the chosen locus and read count data (in CRISPRT4/output/countData) showing how many reads were mapped to features of distinct genes. Vcf and bam files can be viewed with IGV or similar software. Counts table can be analysed in R or Python.
 
-6. To obtain information from the vcf files in an easy to screen format, you can run the Screening_for_mutants_by_vcf_files.sh Script.
+6. To obtain information from the vcf files in an easy to screen format, you can run the Screening_for_mutants_by_vcf_files.sh script.
 This is a quick and easy solution to screen for potential mutants by extracting variant call information from each vcf files. Based on indicated sites with variants, you can then decide on which mutants to investigate further in IGV based on the alignments. Theoretically, you should not observe variants at sites other than the one mutated and for negative clones you should not observe any variants called by longshot. Thus, these samples appear without any information except for the sample name in the txt file.
 
 Locate the script in the CRISPRT4 directory and execute:
@@ -173,7 +173,7 @@ The first column represents the reference genome ID, followed by the variant pos
 ***
 
 ## Authors and acknowledgment
-To be added by N.P. M.W. performed data analysis, documentation and created this repository.
+_To be added by N.P._ M.W. performed data analysis, documentation and created this repository.
 
 ## Project status
 This project is currently under development.
