@@ -46,7 +46,7 @@ or for osx-arm64
 conda install -c merv samtools
 ```
 
-7. Install longshot (https://github.com/pjedge/longshot) for osx or linux (unfortunately, not available for osx-arm64)
+7. Install longshot (https://github.com/pjedge/longshot) for osx or linux. Unfortunately, this is not available for osx-arm64. Thus, please consider instructions from 10. for installation.
 ```
 conda install -c bioconda longshot
 ```
@@ -112,11 +112,11 @@ in your input reference folder execute the pwd command
 ```
 pwd
 ```
-example: /Users/maikschauerte/Data-Analysis/CRISPRT4/input/reference
+example: /Users/example_user/Data-Analysis/CRISPRT4/input/reference
 Thus, your REFERENCE and GFF3 variables will be:
 ```
-REFERENCE="/Users/maikschauerte/Data-Analysis/CRISPRT4/input/reference/NC_000866-4.fasta"
-GFF3="/Users/maikschauerte/Data-Analysis/CRISPRT4/input/reference/NC_000866-4.gff3"
+REFERENCE="/Users/example_user/Data-Analysis/CRISPRT4/input/reference/NC_000866-4.fasta"
+GFF3="/Users/example_user/Data-Analysis/CRISPRT4/input/reference/NC_000866-4.gff3"
 ```
 5.2 Define the target region for variant calling (ideally the coordinates of the locus at which you performed mutagenesis)
 Example for modA and modB genes: 
@@ -128,8 +128,8 @@ As you can see, it is important that the TargetRegion is exactly comprised of th
 5.3 These two changes have to be made in the script by the user. 
 ```
 # Adjust these lines of code to specify the absolute path to the reference genome for mapping and variant calling
-REFERENCE="/Users/maikschauerte/Data-Analysis/NP_final/ONTrun_079/CRISPRT4/input/reference/NC_000866-4.fasta"
-GFF3="/Users/maikschauerte/Data-Analysis/NP_final/ONTrun_079/CRISPRT4/input/reference/NC_000866-4.gff3"
+REFERENCE="/Users/example_user/Data-Analysis/CRISPRT4/input/reference/NC_000866-4.fasta"
+GFF3="/Users/example_user/Data-Analysis/CRISPRT4/input/reference/NC_000866-4.gff3"
 
 ...
 
