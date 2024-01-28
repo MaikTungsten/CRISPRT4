@@ -173,7 +173,7 @@ The first column represents the reference genome ID, followed by the variant pos
 ***
 
 ## Authors and acknowledgment
-_To be added by N.P._ M.W. performed data analysis, documentation and created this repository.
+M.W. performed data analysis, documentation and created this repository.
 
 ## Project status
 This project is currently under development.
