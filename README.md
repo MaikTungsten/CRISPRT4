@@ -4,7 +4,7 @@
 
 ## What CRISPRT4 is made for
 
-CRISPRT4 is a workflow to screen hundreds of potential T4 phage point mutants obtained from the CRISPR-Cas12 approach as described in Pozhydaieva et al., 2023 (**LINK**). It is designed only for screening of phage mutants via sequencing of distinct amplified genomic regions of interest with the Oxford Nanopore platform. This workflow includes demultiplexing with minibar, mapping to the reference genome with minimap2 and variant calling using longshot.
+CRISPRT4 is a workflow to screen hundreds of potential T4 phage point mutants obtained from the CRISPR-Cas12 approach as described in Pozhydaieva et al., 2024 on bioRxiv ([**LINK**](https://www.biorxiv.org/content/10.1101/2024.01.28.577628v1)). It is designed only for screening of phage mutants via sequencing of distinct amplified genomic regions of interest with the Oxford Nanopore platform. This workflow includes demultiplexing with minibar, mapping to the reference genome with minimap2 and variant calling using longshot.
 
 ## Installation of requirements
 
@@ -173,7 +173,7 @@ The first column represents the reference genome ID, followed by the variant pos
 ***
 
 ## Authors and acknowledgment
-For entire acknowledgement, please see the manuscript at **LINK**. M.W.-S. performed data analysis, documentation and created this repository.
+For entire acknowledgement, please see the manuscript at https://www.biorxiv.org/content/10.1101/2024.01.28.577628v1. M.W.-S. performed data analysis, documentation and created this repository.
 
 ## Project status
 This project is currently under development.
