@@ -6,6 +6,25 @@
 
 CRISPRT4 is a workflow to screen hundreds of potential T4 phage point mutants obtained from the CRISPR-Cas12 approach as described in Pozhydaieva et al., 2024 on bioRxiv ([**LINK**](https://www.biorxiv.org/content/10.1101/2024.01.28.577628v1)). It is designed only for screening of phage mutants via sequencing of distinct amplified genomic regions of interest with the Oxford Nanopore platform. This workflow includes demultiplexing with minibar, mapping to the reference genome with minimap2 and variant calling using longshot.
 
+## Sequencing data and examples
+
+Sequencing data is available under Bio Project PRJNA1072093. ONTrun_079 contains the sequencing of ModA T4 phage mutants, ONTrun_085 contains the sequencing of Alt T4 phage mutants. The Index combinations for demultiplexing with minibar are deposited under Example Data in the repository. The samples/mutagenesis strategies are linked to the following sample indeces:
+```
+ONTrun_079
+S001 - S036: E. coli BL21 DE3 NgTET + Cas9
+S037 - S072: E. coli BL21 DE3 Cas9
+S073 - S108: E. coli BL21 DE3 Cas12
+S109 - S144: E. coli BL21 DE3 NgTET + Cas12
+```
+
+```
+ONTrun_085
+S001 - S024, S145 - S168: E. coli BL21 DE3 Cas9
+S025 - S048, S097 - S121: E. coli BL21 DE3 NgTET + Cas9
+S049 - S096: E. coli BL21 DE3 NgTET + Cas12
+S122 - S144, S169 - S192: E. coli BL21 DE3 Cas12
+```
+
 ## Installation of requirements
 
 For the data analysis, several tools are needed which are most easily installed via miniconda. Therefore, it is recommended that you follow the suggested installation procedure described in the following but different setups are certainly possible:
